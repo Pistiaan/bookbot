@@ -1,4 +1,5 @@
 from stats import count_words, count_letters, book_report
+import sys
 
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -21,4 +22,8 @@ def main(filepath):
     dict_list = book_report(letter_dict)
     print_report(filepath, content_string, dict_list)
 
-main('books/frankenstein.txt')
+try:
+    main(sys.argv[1])
+except IndexError:
+    print('Usage: python3 main.py <path_to_book>')
+    sys.exit(1)
